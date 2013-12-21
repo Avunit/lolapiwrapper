@@ -5,7 +5,7 @@
 		<meta charset="UTF-8">
 	</head>
 	<body>
-		<h1>Welcome to the new and improved LolKing!</h1>
+		<h1>LoLKing For Dummies!</h1>
 		<form name ="search" method="post">
 			<input type="text" name="summoner">
 			<input type="submit" name="search" value="Search">
