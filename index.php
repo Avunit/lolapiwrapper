@@ -13,24 +13,25 @@
 		<?php
 			// Include wrapper library
 			require_once $_SERVER['DOCUMENT_ROOT'].'/LolKing/LeagueAPIWrapper/WrapperLibrary.php';
-			
+
 			// Displays some simple information about queried summoner
-			if (isset($_REQUEST['summoner'])) {				
-				$summoner = new Summoner($_REQUEST['summoner']);				
+			if (isset($_REQUEST['summoner'])) {
+				// Strip tags from query (XSS defense)
+				$summoner = new Summoner(strip_tags($_REQUEST['summoner']));
 				$league = new League();
 				$leagueData = $league->getLeague($summoner->getID());
-				
+
 				echo '<p>';
 				echo $summoner->printSummoner().'<br>';
-				
+
 				if ($leagueData == NULL) {
 					echo 'Unranked cuz noob';
-				} else {					
+				} else {
 					$leagueName = $leagueData[$summoner->getID()]['name'];
 					echo 'League Name: '.$leagueName.'<br>';
-									
+
 					$players = $leagueData[$summoner->getID()]['entries'];
-					
+
 					foreach ($players as $player) {
 						if (!strcmp($player['playerOrTeamId'], $summoner->getID())) {
 							echo 'Tier: '.$player['tier'].'<br>';
@@ -41,7 +42,7 @@
 					}
 				}
 				echo '</p>';
-			}		
+			}
 		?>
 	</body>
 </html>
