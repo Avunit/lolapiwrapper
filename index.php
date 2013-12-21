@@ -25,7 +25,7 @@
 				echo $summoner->printSummoner().'<br>';
 
 				if ($leagueData == NULL) {
-					echo 'Unranked cuz noob';
+					echo 'Summoner is unranked.';
 				} else {
 					$leagueName = $leagueData[$summoner->getID()]['name'];
 					echo 'League Name: '.$leagueName.'<br>';
